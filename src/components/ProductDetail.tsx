@@ -4,14 +4,16 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '../store/cartSlice';
 import { Shield, Package, Truck } from 'lucide-react';
 import { motion } from 'framer-motion';
-
+import img1 from "../assets/1.jpg";
+import img2 from "../assets/2.jpg";
+import img3 from "../assets/3.jpg";
 const products = [
   {
     id: 1,
     name: "SmartCam Pro",
     description: "4K Ultra HD Smart Security Camera with Night Vision",
     price: "$199.99",
-    image: "https://static.tp-link.com/upload/image-line/01_normal_20230817224004g.jpg?auto=format&fit=crop&q=80&w=400",
+    image: img1,
     features: [
       "4K Ultra HD Resolution",
       "Advanced Night Vision",
@@ -34,7 +36,7 @@ const products = [
     name: "DoorGuard Elite",
     description: "Smart Doorbell Camera with Two-Way Audio",
     price: "$149.99",
-    image: "https://static.tp-link.com/upload/image-line/Tapo_C201_US_1.0_overview_1_normal_20240829023222w.jpg?auto=format&fit=crop&q=80&w=400",
+    image: img2,
     features: [
       "HD Video Quality",
       "Two-way Audio",
@@ -57,7 +59,7 @@ const products = [
     name: "SecureView 360",
     description: "360° Panoramic Security Camera with Motion Tracking",
     price: "$299.99",
-    image: "https://static.tp-link.com/upload/image-line/01_normal_20230420071916t.jpg",
+    image: img3,
     features: [
       "360° Coverage",
       "Auto Motion Tracking",
