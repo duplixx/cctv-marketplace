@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python
+*.pyc
+
+# fastapi
+*.log
+*.sqlite3
+__pycache__/
+instance/
