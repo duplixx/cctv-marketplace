@@ -1,5 +1,5 @@
 # CCTV MarketPlace
-
+![alt text](image.png)
 ## Overview
 
 CCTV MarketPlace is an e-commerce platform for purchasing CCTV equipment. The project is built using modern web technologies including React, Redux, TypeScript, and Tailwind CSS for the frontend, and FastAPI with MongoDB for the backend.
