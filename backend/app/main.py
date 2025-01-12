@@ -80,3 +80,7 @@ async def login(credentials: LoginCredentials):
 @app.get("/api/auth/me", response_model=User)
 async def get_current_user_info(current_user: User = Depends(get_current_user)):
     return current_user
+
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)
