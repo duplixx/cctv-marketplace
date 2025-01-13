@@ -7,3 +7,7 @@ motor==3.3.1
 python-dotenv==1.0.0
 pydantic[email]==2.4.2
 pymongo==4.5.0
+python-multipart
+opencv-python
+numpy
+sib_api_v3_sdk
