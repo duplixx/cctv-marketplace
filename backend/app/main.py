@@ -1,11 +1,15 @@
-from fastapi import FastAPI, HTTPException, Depends, status
+from fastapi import FastAPI, HTTPException,UploadFile,File, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from datetime import timedelta
 from bson import ObjectId
 from .models import UserCreate, User, Token, LoginCredentials
 from .auth import get_password_hash, verify_password, create_access_token, get_current_user
 from .database import db
+from .mail import EmailRequest, send_order_confirmation
+from .analyze import analyze_video
 import os
+import uvicorn
+
 
 app = FastAPI()
 
@@ -76,6 +80,16 @@ async def login(credentials: LoginCredentials):
             "name": user["name"]
         }
     }
+@app.post("/api/send-order-email")
+async def send_order_email(request: EmailRequest):
+    result = send_order_confirmation(request)
+    if result:
+        return {"message": "Order confirmation email sent successfully"}
+    
+@app.post("/api/analyze-video")
+async def analyze_video_endpoint(video: UploadFile = File(...)):
+    result = await analyze_video(video)
+    return result
 
 @app.get("/api/auth/me", response_model=User)
 async def get_current_user_info(current_user: User = Depends(get_current_user)):

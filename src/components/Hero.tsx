@@ -1,6 +1,7 @@
 import React from 'react';
 import { Shield } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Hero = () => {
   return (
@@ -44,6 +45,7 @@ const Hero = () => {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex flex-col sm:flex-row gap-4"
             >
+              <a href="/#products" >
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -51,13 +53,16 @@ const Hero = () => {
               >
                 Shop Products
               </motion.button>
+              </a>
+              <a href="/#video-preview">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="border-2 border-white text-white px-8 py-3 rounded-md font-semibold hover:bg-white hover:text-blue-600 transition-colors"
               >
-                Enterprise Solutions
+                AI-Powered demo
               </motion.button>
+              </a>
             </motion.div>
           </motion.div>
           <motion.div

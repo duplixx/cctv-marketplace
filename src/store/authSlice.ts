@@ -35,7 +35,7 @@ export const loginUser = createAsyncThunk(
   'auth/login',
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`https://cctv-marketplace.onrender.com/api/auth/login`, credentials);
+      const response = await axios.post(`${process.env.VITE_BACKEND_URL}api/auth/login`, credentials);
       localStorage.setItem('token', response.data.access_token);
       return response.data.user;
     } catch (error: any) {
@@ -47,7 +47,7 @@ export const registerUser = createAsyncThunk(
   'auth/register',
   async (credentials: RegisterCredentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post(`https://cctv-marketplace.onrender.com/api/auth/login`, credentials);
+      const response = await axios.post(`${process.env.VITE_BACKEND_URL}api/auth/login`, credentials);
       return response.data.user;
     } catch (error: any) {
       return rejectWithValue(error.response.data.message);

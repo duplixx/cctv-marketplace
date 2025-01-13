@@ -97,6 +97,7 @@ const Products = () => {
                   </h3>
                 </Link>
                 <p className="text-gray-600 mb-4">{product.description}</p>
+                
                 <div className="flex justify-between items-center">
                   <span className="text-2xl font-bold text-blue-600">{product.price}</span>
                   <motion.button

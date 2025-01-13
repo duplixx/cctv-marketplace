@@ -3,17 +3,24 @@ import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart, updateQuantity } from '../store/cartSlice';
 import type { RootState } from '../store/store';
 import { Trash2 } from 'lucide-react';
-
+import { useAuth0 } from '@auth0/auth0-react';
+import emptyCart from '../assets/empty-cart.png';
 const Cart = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch();
-
+  const {isAuthenticated,loginWithRedirect} = useAuth0();
   const total = cartItems.reduce((sum, item) => {
     const price = parseFloat(item.price.replace('$', ''));
     return sum + price * item.quantity;
   }, 0);
   const handleCheckout = () => {
-    // Store cart items in localStorage before navigation
+    if (!isAuthenticated) {
+      localStorage.setItem('checkoutItems', JSON.stringify(cartItems));
+      loginWithRedirect({
+        appState: { returnTo: window.location.pathname }
+      });
+      return;
+    }
     localStorage.setItem('checkoutItems', JSON.stringify(cartItems));
     window.location.href = '/checkout';
   };
@@ -24,7 +31,13 @@ const Cart = () => {
         <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
         
         {cartItems.length === 0 ? (
+          <div className="text-center w-full items-center flex flex-col">
+          <img src={emptyCart} alt="Empty Cart" width={400} height={400} />
           <p className="text-gray-600">Your cart is empty</p>
+          <button onClick={() => window.location.href = '/#products'} className="bg-blue-600 text-white py-3 px-6 rounded-md hover:bg-blue-700 mt-6">
+            Continue Shopping
+          </button>
+          </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">

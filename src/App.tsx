@@ -11,6 +11,8 @@ import Auth from './components/Auth';
 import RequestDemo from './components/RequestDemo';
 import Checkout from './components/Checkout';
 import CheckoutSuccess from './components/CheckoutSuccess';
+import VideoAnalytics from './components/VideoAnalytics';
+import VideoAnalyticsPreview from './components/VideoPreview';
 
 function App() {
   return (
@@ -21,6 +23,7 @@ function App() {
           <>
             <Hero />
             <Products />
+            <VideoAnalyticsPreview />
             <Solutions />
           </>
         } />
@@ -30,6 +33,7 @@ function App() {
         <Route path="/request-demo" element={<RequestDemo />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/checkout/success" element={<CheckoutSuccess />} />
+        <Route path="/video-analytics" element={<VideoAnalytics />} />
       </Routes>
       <Footer />
     </div>
