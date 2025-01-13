@@ -1,8 +1,20 @@
 # CCTV MarketPlace
 ![alt text](image.png)
+
+## AI Features
+#### Real-Time Analytics
+ - People counting and tracking
+ - Movement pattern analysis
+ - Behavior detection
+ - Heat map generation for traffic flow
+## Before & After Analysis ↓
+![alt text](image-1.png)
+
+After
+![alt text](image-2.png)
 ## Overview
 
-CCTV MarketPlace is an e-commerce platform for purchasing CCTV equipment. The project is built using modern web technologies including React, Redux, TypeScript, and Tailwind CSS for the frontend, and FastAPI with MongoDB for the backend.
+CCTV MarketPlace is an innovative e-commerce platform combining traditional CCTV equipment sales with cutting-edge AI analysis capabilities. The platform leverages computer vision and machine learning to provide intelligent security solutions.
 
 ## Project Requirements
 
@@ -32,8 +44,10 @@ CCTV MarketPlace is an e-commerce platform for purchasing CCTV equipment. The pr
 
 ### Backend
 - **FastAPI**: A modern, fast web framework for building APIs with Python 3.7+.
+- **OpenCV**: for video processing
 - **MongoDB**: A NoSQL database known for its flexibility and scalability.
 - **Uvicorn**: A lightning-fast ASGI server implementation.
+
 
 
 ## Getting Started
