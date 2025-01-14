@@ -1,8 +1,7 @@
 from fastapi import HTTPException
 from pydantic import BaseModel
 from typing import List
-import sib_api_v3_sdk
-from sib_api_v3_sdk.rest import ApiException
+import resend
 import os
 
 class OrderItem(BaseModel):
@@ -27,10 +26,14 @@ class EmailRequest(BaseModel):
     orderDetails: OrderDetails
 
 def send_order_confirmation(request: EmailRequest):
-    configuration = sib_api_v3_sdk.Configuration()
-    configuration.api_key['api-key'] = os.getenv('BREVO_API_KEY')
-    
-    api_instance = sib_api_v3_sdk.TransactionalEmailsApi(sib_api_v3_sdk.ApiClient(configuration))
+    resend.api_key = os.getenv('RESEND_API_KEY')
+
+    # r = resend.Emails.send({
+    # "from": "onboarding@resend.dev",
+    # "to": "rootsshikhar001@gmail.com",
+    # "subject": "Testibng Hello World",
+    # "html": "<p>Congrats on sending your <strong>first email</strong>!</p>"
+    # })
     
     items_html = "".join([
         f"<li>{item.name} - Quantity: {item.quantity} - Price: {item.price}</li>"
@@ -51,20 +54,15 @@ def send_order_confirmation(request: EmailRequest):
     <p>{request.orderDetails.shippingAddress.country}</p>
     """
 
-    sender = {"name": "Your Store", "email": os.getenv('SMTP_FROM')}
-    to = [{"email": request.email, "name": request.orderDetails.shippingAddress.name}]
-
-    send_smtp_email = sib_api_v3_sdk.SendSmtpEmail(
-        to=to,
-        html_content=html_content,
-        sender=sender,
-        subject="Order Confirmation"
-    )
-
     try:
-        api_response = api_instance.send_transac_email(send_smtp_email)
+        response = resend.Emails.send({
+            "from": "orders@duplixx.xyz",
+            "to": request.email,
+            "subject": "Order Confirmation",
+            "html": html_content
+        })
         return True
-    except ApiException as e:
+    except Exception as e:
         raise HTTPException(
             status_code=500,
             detail=f"Failed to send order confirmation email: {str(e)}"

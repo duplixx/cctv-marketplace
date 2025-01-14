@@ -11,3 +11,4 @@ python-multipart
 opencv-python
 numpy
 sib_api_v3_sdk
+resend
