@@ -12,7 +12,7 @@ interface OrderDetails {
   
   export const sendOrderConfirmationEmail = async (email: string, orderDetails: OrderDetails) => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/send-order-email`, {
+      const response = await fetch(`https://cctv-marketplace.onrender.com/api/send-order-email`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

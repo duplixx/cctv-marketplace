@@ -62,7 +62,7 @@ const VideoAnalytics = () => {
     formData.append('video', videoFile);
 
     try {
-        const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}api/analyze-video`, formData, {
+        const response = await axios.post(`https://cctv-marketplace.onrender.com/api/analyze-video`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
         }
